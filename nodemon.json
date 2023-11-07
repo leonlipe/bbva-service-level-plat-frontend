@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "**/*.spec.ts",
+    ".git",
+    "node_modules"
+  ],
+  "exec": "ts-node -r ./env.js src/server.ts",
+  "ext": "ts"
+}

@@ -1,0 +1,25 @@
+
+# Exclude dependencies
+node_modules/
+
+.idea
+docs
+build
+coverage
+public/*
+!public/.gitkeep
+
+.npmrc
+
+# Visual code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+.DS_Store

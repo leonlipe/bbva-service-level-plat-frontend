@@ -1,0 +1,17 @@
+{
+  "name": "webapp",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Google Cloud Platform Team",
+    "email": "gcp.team@bbva.com"
+  },
+  "scripts": {
+    "build": "rm -rf ../public/* && mkdir -p ../public && cp index.html ../public",
+    "coverage": "echo 'implemented me!'",
+    "dev": "echo 'implemented me!'",
+    "test:unit": "echo 'implemented me!'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

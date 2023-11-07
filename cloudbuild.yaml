@@ -1,0 +1,43 @@
+steps:
+- name: 'google/cloud-sdk:slim'
+  id: 'Get .npmrc file'
+  entrypoint: 'bash'
+  args: [
+    '-c',
+    'gcloud secrets versions access ${_NPMRC_SECRET_VERSION} --secret=${_NPMRC_SECRET_NAME} --project=${_NPMRC_SECRET_PROJECT} > /workspace/.npmrc'
+  ]
+
+- name: 'node:18'
+  id: 'Install front dependencies'
+  entrypoint: 'npm'
+  args: ['install']
+  dir: 'webapp'
+
+- name: 'node:18'
+  id: 'Build webapp'  
+  entrypoint: 'npm'
+  args: ['run', 'build']
+  dir: 'webapp'
+
+- name: 'google/cloud-sdk:slim'
+  id: 'Generate GAE version name'
+  entrypoint: 'bash'
+  args: [
+    '-c',
+    'echo $(echo $BUILD_ID | cut -d"-" -f 1) > /workspace/version'
+  ]
+
+- name: 'google/cloud-sdk:slim'
+  id: 'Deploy GAE Application'
+  entrypoint: 'bash'
+  args: [
+    '-c',
+    'gcloud app deploy --appyaml=deployables/${_BBVA_GAE_ENV}/app.yaml --ignore-file=deployables/${_BBVA_GAE_ENV}/.gcloudignore --version=$(cat /workspace/version) --no-promote .'
+  ]
+
+substitutions:
+  _NPMRC_SECRET_NAME: 'npmrc-vdc'
+  _NPMRC_SECRET_VERSION: 'latest'
+  _NPMRC_SECRET_PROJECT: 'bbva-devtools-gcp'
+
+logsBucket: 'gs://$PROJECT_ID-cloudbuild-logs'

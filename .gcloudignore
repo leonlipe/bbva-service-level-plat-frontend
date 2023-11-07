@@ -1,0 +1,26 @@
+# Exclude compiled .js files
+/src/*.js
+
+# Exclude docs, .git, .idea
+docs/
+build/
+.idea
+.git
+coverage
+.gitignore
+
+# Exclude dependencies
+node_modules/
+
+# Exclude archetype files
+nodemon.json
+*.md
+env.js
+Jenkinsfile
+sonar-project.properties
+
+.eslintignore
+.prettierrc.js
+.eslintrc.json
+typedoc.json
+Makefile

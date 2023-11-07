@@ -1,0 +1,25 @@
+# Reference: https://cloud.google.com/appengine/docs/standard/nodejs/config/appref
+
+service: default
+runtime: nodejs18
+
+env_variables:
+  USER_SESSIONS_STORAGE_PATH: default
+  APP_PROPERTIES_PATHS: properties
+  BBVA_ENV: pro
+
+
+handlers:
+  - url: /index.html
+    script: auto
+    secure: always
+
+  - url: /(.*\.(html|js|css|svg|json|png|jpg|gif|map|woff|ttf|ico))$
+    static_files: public/\1
+    upload: public/.*\.(html|js|css|svg|json|png|jpg|gif|map|woff|ttf|ico)
+    secure: always
+    login: required
+
+  - url: /.*
+    script: auto
+    secure: always

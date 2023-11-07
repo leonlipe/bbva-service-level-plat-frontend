@@ -1,0 +1,15 @@
+{
+  "session": {
+    "groups": [],
+    "fellows": []
+  },
+  "soyo": {
+    "roles": true
+  },
+  "iap": {
+    "clientId": ""
+  },
+  "logging": {
+    "headers": true
+  }
+}

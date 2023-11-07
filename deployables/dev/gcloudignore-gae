@@ -1,0 +1,34 @@
+# Exclude compiled .js files
+src/*.js
+
+# Exclude docs, .git, .idea
+docs/
+build/
+.idea
+.git
+.gitignore
+.gcloudignore
+coverage
+deployables/*
+properties/*
+!properties/dev.bbva.com
+nodemon.json
+*.md
+version
+env.js
+cloudbuild.yaml
+Jenkinsfile
+sonar-project.properties
+test
+.eslintignore
+.prettierrc.js
+.eslintrc.json
+typedoc.json
+jest.config.js
+Makefile
+
+# Exclude dependencies
+node_modules/
+
+# Exclude web app folder
+webapp/
