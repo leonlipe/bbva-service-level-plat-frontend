@@ -1,17 +1,55 @@
 {
-  "name": "webapp",
-  "version": "0.1.0",
+  "name": "fga-front-vue-archetype",
   "private": true,
-  "author": {
-    "name": "Google Cloud Platform Team",
-    "email": "gcp.team@bbva.com"
-  },
   "scripts": {
-    "build": "rm -rf ../public/* && mkdir -p ../public && cp index.html ../public",
-    "coverage": "echo 'implemented me!'",
-    "dev": "echo 'implemented me!'",
-    "test:unit": "echo 'implemented me!'"
+    "build": "vite build --emptyOutDir",
+    "coverage": "vitest run --coverage",
+    "dev": "vite",
+    "format": "prettier --write src/",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "preview": "vite preview",
+    "test:unit": "vitest"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@bbva-web-components/bbva-web-form-checkbox": "^1.4.15",
+    "@bbva-experience-components/bbva-tab-default": "^2.1.0",
+    "@bbva-web-components/bbva-button-default": "^5.15.15",
+    "@bbva-web-components/bbva-core-icon": "^1.5.7",
+    "@bbva-web-components/bbva-form-checkbox": "^7.9.16",
+    "@bbva-web-components/bbva-form-input": "^1.1.11",
+    "@bbva-web-components/bbva-foundations-icons": "^1.25.0",
+    "@bbva-web-components/bbva-foundations-microillustrations": "^5.21.0",
+    "@bbva-web-components/bbva-foundations-spinner": "^1.0.13",
+    "@bbva-web-components/bbva-web-form-amount": "^1.4.19",
+    "@bbva-web-components/bbva-web-form-date": "^1.2.20",
+    "@bbva-web-components/bbva-web-form-number": "^1.1.13",
+    "@bbva-web-components/bbva-web-form-select": "^1.2.5",
+    "@bbva-web-components/bbva-web-form-text": "^1.1.10",
+    "@bbva-web-components/bbva-web-link": "^1.6.4",
+    "@bbva-web-components/bbva-web-navigation-menu": "^1.3.3",
+    "@bbva-web-components/bbva-web-tab-default": "^1.1.0",
+    "@bbva-web-components/bbva-web-table-body": "^1.5.19",
+    "@bbva-web-components/bbva-web-table-footer": "^1.0.16",
+    "@bbva-web-components/bbva-web-table-header": "^1.1.13",
+    "axios": "^1.6.2",
+    "lit-element": "^2.5.1",
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.0",
+    "vuetify": "^3.4.2"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "@vitest/coverage-c8": "^0.31.1",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/test-utils": "^2.3.2",
+    "eslint": "^8.39.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "jsdom": "^22.0.0",
+    "prettier": "^2.8.8",
+    "sass": "^1.62.1",
+    "vite": "^5.0.2",
+    "vite-plugin-ejs": "^1.7.0",
+    "vitest": "^0.31.0"
+  }
 }

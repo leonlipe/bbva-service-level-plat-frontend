@@ -1,0 +1,21 @@
+@import './normalize.css';
+@import './base.css';
+
+.row {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-blue-color);
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--primary-aqua);
+  }
+}

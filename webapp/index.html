@@ -1,38 +1,94 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>Generic Example</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
-
-    <meta name="theme-color" content="#fafafa">
-
-    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
-          integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
-</head>
-
-<body>
-
-<div style="margin: 0 auto; width: 800px">
-    <h1>Ejemplo de arquetipo generico</h1>
-    <p>Los pasos para adaptar este arquetipo a un framework de javascrip se detallan en esta <a href="https://platform.bbva.com/gcp/documentation/1YrboU5DUP5ziomHK7mz89wJMcKHnNhDJ-YYRPUf9ilQ/technical-documentation/new-archetypes/frontend-gae/web-js-node-js-gae#h.8rd1ppni1tos">sección</a></p>
-</div>
-
-<script>
-  sessionStorage.setItem('userSession', '<%- JSON.stringify(userSession); %>');
-  sessionStorage.setItem('env', '<%- env %>');
-</script>
-
-</body>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%- title %></title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    <% if (isDev) { %>
+    sessionStorage.setItem('userSession', JSON.stringify({
+      "userId": "000000000000000000000",
+      "nickname": "Jane Doe",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane.doe@dev.bbva.com",
+      "domain": "dev.bbva.com",
+      "locale": "en_US",
+      "locales": [
+        "en_US"
+      ],
+      "timeZone": "Europe/Madrid",
+      "administrator": false,
+      "defLanguage": "en",
+      "functionalCode": "XXX",
+      "country": "ESPAÑA",
+      "countryCode": "ESP",
+      "companyCode": "0001",
+      "ous": [
+        {
+          "ouCode": "00000063",
+          "ouDescription": "ENGINEERING"
+        },
+        {
+          "ouCode": "00034609",
+          "ouDescription": "ARCHITECTURE"
+        },
+        {
+          "ouCode": "00044281",
+          "ouDescription": "PUBLIC CLOUD&PROC STRAT&GOVERN"
+        },
+        {
+          "ouCode": "00044290",
+          "ouDescription": "PUBLIC CLOUD & SAAS- CCOE GCP"
+        },
+        {
+          "ouCode": "00039800",
+          "ouDescription": "GOOGLE CLOUD EN BBVA"
+        }
+      ],
+      "employeeId": "UR00000",
+      "companyName": "BBVA",
+      "company": "BBVA",
+      "funtionalChargeDescription": "Front Developer",
+      "sIsEmployee": "N",
+      "sFirstSurname": "Doe",
+      "hasPhoto": false,
+      "largeEmployeeId": "00000000000",
+      "globalRange": " ",
+      "workplaceDescription": "UBICACIÓN INSTALACIONES AJENAS",
+      "workplaceCode": "00010000",
+      "workplaceLatitude": "0",
+      "workplaceLongitude": "0",
+      "costCenterCode": "0000",
+      "costCenterDescription": "XXX",
+      "phoneNumber": " ",
+      "mobilePhoneNumber": " ",
+      "coorporatePhoneNumber": " ",
+      "coorporateMobilePhoneNumber": " ",
+      "department": "BBVA",
+      "userPreferences": {
+        "user": "jane.doe@dev.bbva.com",
+        "language": "en_US",
+        "updateDate": 1484121183133
+      },
+      "floorDescription": " ",
+      "tipoContrato": " ",
+      "empresaEmpleado": "000",
+      "tipoBuzon": "Usuario",
+      "tipoLicencia": "Workspace Enterprise Plus",
+      "userType": "personal_account"
+    }));
+    sessionStorage.setItem('env', 'dev');
+    <% } else { %>
+    sessionStorage.setItem('userSession', '<%- "\<\%- JSON.stringify(userSession); \%\>" -%>');
+    sessionStorage.setItem('env', <%- "\<\%- JSON.stringify(env); \%\>" -%>);
+    <% } %>
+    </script>
+  </body>
 </html>
