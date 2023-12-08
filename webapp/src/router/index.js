@@ -47,7 +47,11 @@ const routes = [
     name: 'model-view',
     component: () => import('@/views/setup/admin-models/Model.vue'),
   },
-
+  {
+    path: '/setup/admin-models/new',
+    name: 'model-new',
+    component: () => import('@/views/setup/admin-models/NewModel.vue'),
+  },
   {
     path: '/setup/values-d1',
     name: 'values-d1',

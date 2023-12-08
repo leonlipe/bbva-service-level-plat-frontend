@@ -16,7 +16,15 @@
     :requestDataKeys="table.requestDataKeys"
     :requestData="table.request"
     :filtersOptions="table.filters"
+    :requestError="errorInRequestModal"
   />
+  <information-modal
+     :open="modal.open"
+     :close="closeModal"
+     :title="modal.title"
+     :message="modal.message"
+     :type="modal.type"
+    />
 </template>
 
 <script>
@@ -25,6 +33,7 @@ import DataTable from "@/components/table/DataTable.vue"
 import AppBar from "@/components/AppBar/AppBar.vue"
 import { headersTable, filtersTable, requestDataKeys } from '@/constants/adminModels';
 import { getModelsAPI } from '@/requests/models';
+import { errorRequestModal } from '@/utils/informationModal';
 
 export default {
   data() {
@@ -33,6 +42,13 @@ export default {
         headers: headersTable, request: getModelsAPI, filters: filtersTable, requestDataKeys
       },
       form: { data: {}, open: false },
+      modal: {
+        open: false,
+        title: '',
+        message: '',
+        type: ''
+      },
+
     }
   },
   methods: {
@@ -43,14 +59,19 @@ export default {
     newItem() {
       this.form.data = {};
       this.form.open = true;
+      this.$router.push('/setup/admin-models/new');
     },
     closeForm() {
       this.form.data = {};
       this.form.open = false;
     },
     watchItem(id) {
-      console.log('id: ', id);
       this.$router.push(`/setup/admin-models/${id}`);
+    },
+    errorInRequestModal(action, error) {
+      this.modal = {
+        open: true, ...errorRequestModal(action, error)
+      };
     },
     save() {
       this.form.open = false;

@@ -75,3 +75,21 @@ export const getUsersAPI = (
     }, 300);
   })
 };
+
+export const getListUserNamesAPI = () => {
+  console.log('List user names /v1/User/listUserNames');
+
+  return  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(
+        { data: [
+          {
+              "id": "1",
+              "nombre": "Adrián Sanchez DEV"
+          }
+        ] }
+      )
+    })
+  });
+};
+

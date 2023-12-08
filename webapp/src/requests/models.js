@@ -104,6 +104,7 @@ export const getModelAPI = (id) => {
           "estatus": "Activo",
           "fecha_inicio_version": "2023-11-15",
           "fecha_activacion": "2023-11-15",
+          "fecha_inactivacion": "2024-11-15",
           "estatus_medicion_id": 1,
           "meta_disponibilidad": 19,
           "fuente_id": 1,
@@ -121,7 +122,7 @@ export const getModelsAPI = (
   pageSize = pagination.size,
   filters = []
 ) => {
-  const query = queryFilter(filters);
+  const query = queryFilter(filters, pageNumber, pageSize);
 
   console.log('List /v1/Model/list ', query);
   
