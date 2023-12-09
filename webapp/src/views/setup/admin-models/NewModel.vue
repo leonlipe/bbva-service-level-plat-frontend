@@ -200,7 +200,7 @@
           :value="data.firstSection.meta_tiempo_respuesta"
           :invalid="!!errors.meta_tiempo_respuesta"
           :error-message="errors.meta_tiempo_respuesta"
-          label="Meta tiempo de respuesta"></bbva-web-form-number>
+          label="Meta tiempo de respuesta %"></bbva-web-form-number>
       </v-col>
     </v-row>
 
@@ -211,7 +211,77 @@
     </v-row>
 
     <v-row>
-      <v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de alta"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_alta = ev.target.value"
+        />
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de activación"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_activacion = ev.target.value"
+        />
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de inicio Periodo de Garantía"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_periodo_garantia = ev.target.value"
+        />
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de inicio Oficial"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_inicio_oficial = ev.target.value"
+        />
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de inactivación"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_inactivacion = ev.target.value"
+        />
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de inicio de versión"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_inicio_version = ev.target.value"
+        />
       </v-col>
     </v-row>
 
@@ -222,7 +292,95 @@
     </v-row>
 
     <v-row>
-      <v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-select
+          key="partnership_select"
+          @change="(ev) => data.firstSection.partnership_id = ev.target.value"
+          :value="data.firstSection.partnership_select"
+          :invalid="!!errors.partnership_select"
+          :error-message="errors.partnership_select"
+          label="Partnership">
+          <bbva-web-form-option value="">Ninguno</bbva-web-form-option>
+          <bbva-web-form-option
+            v-for="option in catalogs.partnership_select"
+            :key="option.id"
+            :value="option.id">{{option.label}}</bbva-web-form-option>
+        </bbva-web-form-select>
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-select
+          key="partnership_measurement_select"
+          @change="(ev) => data.firstSection.estatus_medicion_partnership_id = ev.target.value"
+          :value="data.firstSection.partnership_measurement_select"
+          :invalid="!!errors.partnership_measurement_select"
+          :error-message="errors.partnership_measurement_select"
+          label="Estatus Medición Partnership">
+          <bbva-web-form-option value="">Ninguno</bbva-web-form-option>
+          <bbva-web-form-option
+            v-for="option in catalogs.partnership_measurement_select"
+            :key="option.id"
+            :value="option.id">{{option.label}}</bbva-web-form-option>
+        </bbva-web-form-select>
+      </v-col>
+      <v-col  sm="6" md="4" lg="3">
+        <bbva-web-form-text
+          key="input-meta_partnership_expected-text"
+          @input="(ev) => data.firstSection.meta_partnership_expected = ev.target.value"
+          :value="data.firstSection.meta_partnership_expected"
+          :invalid="errors.meta_partnership_expected"
+          :error-message="errors.meta_partnership_expected"
+          label="Meta Partnership Expected SLA"></bbva-web-form-text>
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-text
+          key="input-meta_partnership_minimum-text"
+          @input="(ev) => data.firstSection.meta_partnership_minimum = ev.target.value"
+          :value="data.firstSection.meta_partnership_minimum"
+          :invalid="errors.meta_partnership_minimum"
+          :error-message="errors.meta_partnership_minimum"
+          label="Meta Partnership Minimum SLA"></bbva-web-form-text>
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de inicio partnership Initial"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_inicio_partnership_initial = ev.target.value"
+        />
+      </v-col>
+      <v-col sm="6" md="4" lg="3">
+        <bbva-web-form-date custom
+          label="Fecha de inicio partnership As Is"
+          :value="valueAsStr"
+          :min="min"
+          class="date-input"
+          :invalid="invalid"
+          :error-message="errorMessage"
+          :max="max"
+          @value-change="(ev) => data.firstSection.fecha_inicio_partnership_as_ls = ev.target.value"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row align-content="center">
+      <v-col sm="6" md="4" lg="2">
+        <bbva-button-default
+          text="Continuar"
+          :disabled="!valid"
+          @click="onSubmit">
+        </bbva-button-default>
+      </v-col>
+      <v-col sm="6" md="4" lg="1" align-self="center">
+        <bbva-button-default
+          text="Cancelar"
+          class="btn-cancel"
+          variant="link"
+          @click="cancel">
+        </bbva-button-default>
       </v-col>
     </v-row>
 
@@ -237,6 +395,8 @@ import '@/components/bbva-web-components/bbva-web-form-select.js'
 import '@/components/bbva-web-components/bbva-web-form-checkbox.js';
 import '@/components/bbva-web-components/bbva-web-form-text.js'
 import '@/components/bbva-web-components/bbva-web-form-number.js'
+import '@/components/bbva-web-components/bbva-web-form-date.js'
+import '@/components/bbva-web-components/bbva-button-default.js'
 import { getBusinessUnitsAPI } from '@/requests/businessUnit';
 import { getCfsesAPI } from '@/requests/cfs';
 import { getListUserNamesAPI } from '@/requests/users';
@@ -247,12 +407,14 @@ import { getMeasurementStatusesAPI } from '@/requests/measurementStatus';
 import { getSourceModelsAPI } from '@/requests/sourceModel';
 import { getStatusModelAPI } from '@/requests/statusModel';
 import { getTypesModelsAPI } from '@/requests/typeModel';
+import { getPartnershipAPI } from "@/requests/partnership";
+import { getPartnershipMeasurementAPI } from "@/requests/partnershipMeasurement";
 
 export default {
   data() {
     return {
       data: {
-        firstSection: dataFirstSection
+        firstSection: { ...dataFirstSection}
       },
       errors: {},
       catalogs: {}
@@ -260,6 +422,9 @@ export default {
   },
   beforeMount() {
     this.loadCatalogs();
+  },
+  computed: {
+    valueAsStr () { return this.value }
   },
   methods: {
     loadCatalogs() {
@@ -273,6 +438,8 @@ export default {
         {request: getSourceModelsAPI, key: 'fuente_id'},
         {request: getStatusModelAPI, key: 'estatus_id'},
         {request: getTypesModelsAPI, key: 'tipo_modelo_id'},
+        {request: getPartnershipAPI, key: 'partnership_select'},
+        {request: getPartnershipMeasurementAPI, key: 'partnership_measurement_select'}
       ].forEach( ({ request, key }) => {
         request().then((response) => {
           this.catalogs[key] = parseCatalog(response.data) ;
@@ -282,7 +449,20 @@ export default {
       });
 
           console.log(this.catalogs);
-    }
+    },
+    onSubmit() {},
+    cancel () {}
   }
 }
 </script>
+
+<style>
+  .date-input input {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+  }
+  .btn-cancel {
+    margin: 10px 0;
+  }
+</style>
