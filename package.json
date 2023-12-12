@@ -20,8 +20,25 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "@bbva-web-components/bbva-button-default": "^5.15.15",
+    "@bbva-web-components/bbva-core-icon": "^1.5.7",
+    "@bbva-web-components/bbva-form-checkbox": "^7.9.17",
+    "@bbva-web-components/bbva-form-input": "^1.1.12",
+    "@bbva-web-components/bbva-foundations-icons": "^1.25.0",
+    "@bbva-web-components/bbva-foundations-microillustrations": "^6.1.0",
+    "@bbva-web-components/bbva-foundations-spinner": "^1.0.13",
+    "@bbva-web-components/bbva-table-default": "^3.6.9",
+    "@bbva-web-components/bbva-web-form-date": "^1.5.0",
+    "@bbva-web-components/bbva-web-form-select": "^1.2.5",
+    "@bbva-web-components/bbva-web-form-text": "^1.1.13",
+    "@bbva-web-components/bbva-web-navigation-menu": "^1.3.3",
+    "@bbva-web-components/bbva-web-tab-default": "^1.1.0",
+    "@bbva-web-components/bbva-web-table-body": "^1.5.19",
+    "@bbva-web-components/bbva-web-table-footer": "^1.0.16",
+    "@bbva-web-components/bbva-web-table-header": "^1.1.13",
     "@gcp/fga": "1.*",
     "@gcp/fga-front-expressjs": ">=0.2.0  <1.0.0",
+    "all": "^0.0.0",
     "express": "^4.18.2"
   },
   "devDependencies": {

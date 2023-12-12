@@ -1,17 +1,33 @@
 {
-  "name": "webapp",
-  "version": "0.1.0",
+  "name": "fga-front-vue-archetype",
   "private": true,
-  "author": {
-    "name": "Google Cloud Platform Team",
-    "email": "gcp.team@bbva.com"
-  },
   "scripts": {
-    "build": "rm -rf ../public/* && mkdir -p ../public && cp index.html ../public",
-    "coverage": "echo 'implemented me!'",
-    "dev": "echo 'implemented me!'",
-    "test:unit": "echo 'implemented me!'"
+    "build": "vite build --emptyOutDir",
+    "coverage": "vitest run --coverage",
+    "dev": "vite",
+    "format": "prettier --write src/",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "preview": "vite preview",
+    "test:unit": "vitest"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "rollup": "^4.8.0",
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "@vitest/coverage-c8": "^0.31.1",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/test-utils": "^2.3.2",
+    "eslint": "^8.39.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "jsdom": "^22.0.0",
+    "prettier": "^2.8.8",
+    "sass": "^1.62.1",
+    "vite": "^5.0.2",
+    "vite-plugin-ejs": "^1.6.4",
+    "vitest": "^0.31.0"
+  }
 }
