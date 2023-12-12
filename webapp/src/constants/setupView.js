@@ -20,8 +20,6 @@ export const setupOptions = [
       icon: "/icons/Book.svg",
       path: "/setup/admin-catalogs",
     },
-  ],
-  [
     {
       title: "Admistración de modelos",
       icon: "/icons/Download-Certificate.svg",

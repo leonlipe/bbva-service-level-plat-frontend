@@ -18,7 +18,7 @@
         </div>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col xs="6" sm="6"  md="4" lg="2"
+      <v-col xs="6" sm="6"  md="4" lg="3" xl="2"
         :class="styles.gradientBackgroud"
         >
         <div class="pt-6">

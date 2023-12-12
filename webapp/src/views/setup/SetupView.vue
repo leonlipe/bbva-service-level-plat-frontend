@@ -15,7 +15,7 @@
       justify="start"
       v-for="(row, index) in setupOptions"
       :key="`row-setup-${index}`">
-      <v-col sm="3" v-for="(col, indexCol) in row" :key="`col-setup-${indexCol}`">
+      <v-col sm="12" md="12" lg="4" xl="3" v-for="(col, indexCol) in row" :key="`col-setup-${indexCol}`">
         <v-card
           variant="outlined"
           rounded

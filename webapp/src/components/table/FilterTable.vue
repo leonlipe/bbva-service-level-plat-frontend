@@ -4,8 +4,8 @@
     position="absolute"
     min-width="94%"
     style="overflow: initial; z-index: 50;"
-    class="mt-2 ml-12">
-    <v-container fluid class="pl-12 ml-0 mr-0">
+    class="mt-2 ml-xl-12 ml-lg-12">
+    <v-container fluid class="pl-xl-12 pl-lg-12 ml-0 mr-0">
       <v-row>
         <v-col cols="12">
           <div class="float-right pr-5">
@@ -20,8 +20,9 @@
       <v-row class="pr-8">
         <v-col
           sm="12"
-          md="4"
+          md="6"
           lg="4"
+          xl="4"
           :key="`hidden-filter-index-${index}`"
           v-for="(filter, index) in filters">
           <bbva-web-form-text
@@ -54,14 +55,14 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="2" lg="1">
+        <v-col sm="12" md="2" lg="2" xl="1">
           <bbva-button-default
             active=""
             text="Buscar"
             class="w-100"
             @click="searchFilter" ></bbva-button-default>
         </v-col>
-        <v-col sm="12" md="2" lg="1">
+        <v-col sm="12" md="3" lg="2" xl="1">
           <div class="pt-3">
           <bbva-button-default
             text="Borrar filtros"
@@ -77,7 +78,7 @@
     <v-row justify="start">
       <v-col
         sm="12"
-        md="3" lg="3"
+        md="6" lg="3" xl="3"
         :key="`showed-filter-index-${index}`"
         v-for="(filter, index) in showedFilters">
         <bbva-web-form-text
@@ -109,8 +110,8 @@
           </div>
         </div>
       </v-col>
-      <v-col sm="12" md="2" lg="1" v-if="filters.length > 2">
-        <div class="pt-3 pl-4">
+      <v-col sm="12" md="2" lg="1" v-if="filters.length > 2" class="pl-lg-0">
+        <div class="pt-3 pl-xl-4">
           <bbva-button-default
             text="Ver más filtros"
             variant="link"

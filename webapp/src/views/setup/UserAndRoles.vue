@@ -18,15 +18,11 @@
     :filtersOptions="table.filters"
     :requestError="errorInRequestModal"
   />
-  <modal-form
+  <user-form
     :close="closeForm"
     :data="form.data"
     :save="save"
     :open="form.open"
-    :validations="form.validations"
-    :fields="form.fields"
-    resource="usuario"
-    :nestedFields="form.nestedFields"
     :requestError="errorInRequestModal"
     />
   <information-modal
@@ -48,7 +44,7 @@ import SectionHeader from '@/components/headers/SectionHeader.vue';
 import {
   headersTable, filtersTable, validationsForm, fieldsForm, requestDataKeys, nestedFields
 } from '@/constants/userAndRoles';
-import ModalForm from '@/components/forms/ModalForm.vue';
+import UserForm from '@/components/forms/UserForm.vue';
 import { updateStatusUsersAPI, getUsersAPI, createUserAPI, updateUserAPI } from '@/requests/users';
 import InformationModal from '@/components/modals/InformationModal.vue';
 
@@ -79,7 +75,7 @@ export default {
     InformationModal,
     DataTable,
     SectionHeader,
-    ModalForm,
+    UserForm,
   },
   methods: {
     edit(item) {
