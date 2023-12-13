@@ -42,17 +42,12 @@
               :key="option.id"
               :value="option.id">{{option.label}}</bbva-web-form-option>
           </bbva-web-form-select>
-          <div
+          <date-picker
             v-if="filter.type === 'date'"
-            data-grid="region">
-             <div data-grid="zone">
-               <date-picker
-                 @value-change="(ev) => setValue(filter, ev)"
-                 :label="filter.label"
-                 :value="inputs[filter.name].value"
-                 />
-            </div>
-          </div>
+            @value-change="(ev) => setValue(filter, ev)"
+            :label="filter.label"
+            :value="inputs[filter.name].value"
+            />
         </v-col>
       </v-row>
       <v-row>
@@ -100,17 +95,12 @@
             :key="option.id"
             :value="option.id">{{option.label}}</bbva-web-form-option>
         </bbva-web-form-select>
-        <div
+        <date-picker
           v-if="filter.type === 'date'"
-          data-grid="region">
-           <div data-grid="zone">
-             <date-picker
-               @value-change="(ev) => setValue(filter, ev)"
-               :label="filter.label"
-               :value="inputs[filter.name].value"
-               />
-          </div>
-        </div>
+          @value-change="(ev) => setValue(filter, ev)"
+          :label="filter.label"
+          :value="inputs[filter.name].value"
+          />
       </v-col>
       <v-col sm="12" md="2" lg="1" v-if="filters.length > 2" class="pl-lg-0">
         <div class="pt-3 pl-xl-4">

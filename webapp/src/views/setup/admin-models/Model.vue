@@ -13,13 +13,13 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <span class="text-h5">Resumen del modelo</span>
+        <span class="text-h5 font-weight-black">Resumen del modelo</span>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12">
-        <span class="text-h6">Datos CFS</span>
+        <span class="text-h6 font-weight-black">Datos CFS</span>
       </v-col>
     </v-row>
 
@@ -54,7 +54,7 @@
 
     <v-row>
       <v-col cols="12">
-        <span class="text-h6">Ventana</span>
+        <span class="text-h6 font-weight-black">Ventana</span>
       </v-col>
     </v-row>
 
@@ -87,7 +87,7 @@
 
     <v-row>
       <v-col cols="12">
-        <span class="text-h6">Datos de medición</span>
+        <span class="text-h6 font-weight-black">Datos de medición</span>
       </v-col>
     </v-row>
 
@@ -140,7 +140,7 @@
 
     <v-row>
       <v-col cols="12">
-        <span class="text-h6">Fechas</span>
+        <span class="text-h6 font-weight-black">Fechas</span>
       </v-col>
     </v-row>
 
@@ -171,7 +171,7 @@
 
     <v-row>
       <v-col cols="12">
-        <span class="text-h6">Partnership</span>
+        <span class="text-h6 font-weight-black">Partnership</span>
       </v-col>
     </v-row>
 
@@ -214,7 +214,7 @@
             text=""
             @click="() => showCBP[cbp.nombre] = ! showCBP[cbp.nombre]">
           </bbva-button-default>
-          <span class="text-h6">{{cbp.nombre}}</span>
+          <span class="text-h6 font-weight-black">{{cbp.nombre}}</span>
         </v-col>
       </v-row>
       <div

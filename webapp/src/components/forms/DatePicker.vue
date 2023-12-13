@@ -1,14 +1,19 @@
-<template  >
-    <bbva-web-form-date custom
-      :label="label"
-      :value="date"
-      :min="min"
-      :class="styles.dateInput"
-      :invalid="invalid"
-      :error-message="errorMessage"
-      :max="max"
-      @value-change="(ev) => onChange(ev)"
-    />
+<template>
+  <div
+    data-grid="region">
+    <div data-grid="zone">
+      <bbva-web-form-date custom
+        :label="label"
+        :value="date"
+        :min="min"
+        :class="styles.dateInput"
+        :invalid="invalid"
+        :error-message="errorMessage"
+        :max="max"
+        @value-change="(ev) => onChange(ev)"
+      />
+    </div>
+  </div>
 </template>
 
 <script>

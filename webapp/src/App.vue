@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-main>
-      <bbva-navigation-menu ref="menu"/>
-      <div class="pl-14">
+      <bbva-navigation-menu v-if="showMenu" ref="menu"/>
+      <div :class="showMenu ? 'pl-14' : ''">
         <router-view></router-view>
       </div>
     </v-main>
@@ -20,8 +20,24 @@ window.IntlMsg.localesHost = `${window.location.protocol}//${window.location.hos
 window.IntlMsg.url = 'locales.json'
 
 export default {
+  data() {
+    return {
+      showMenu: true
+    }
+  },
   components: {
     BbvaNavigationMenu,
+  },
+  watch: {
+    $route() {
+      const noMenuRoutes = ['model-new', 'model-new-elements'];
+      if( noMenuRoutes.includes( this.$route.name ) ){
+        this.showMenu = false;
+      } else {
+        this.showMenu = true;
+      }
+    }
   }
+
 }
 </script>

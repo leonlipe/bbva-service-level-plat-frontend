@@ -1,12 +1,6 @@
 <template>
+  <header-form-model stepValue="50"/>
 	<v-container class="pl-8 pb-12" fluid>
-		<v-row>
-			<v-col cols="12">
-				<bbva-progress-multistep-bar style="margin: 0" accessibility-text="50" value="50">
-				</bbva-progress-multistep-bar>
-			</v-col>
-		</v-row>
-
 		<v-row>
 			<v-col cols="12">
 				<span class="text-h6">1 de 2</span>
@@ -207,6 +201,7 @@ import { getStatusModelAPI } from '@/requests/statusModel';
 import { getTypesModelsAPI } from '@/requests/typeModel';
 import { getPartnershipAPI } from "@/requests/partnership";
 import { getPartnershipMeasurementAPI } from "@/requests/partnershipMeasurement";
+import HeaderFormModel from '@/components/headers/HeaderFormModel.vue'
 
 export default {
 	data() {
@@ -226,6 +221,9 @@ export default {
 	computed: {
 		valueAsStr () { return this.value }
 	},
+  components: {
+    HeaderFormModel
+  },
 	methods: {
 		loadCatalogs() {
 			[

@@ -1,3 +1,5 @@
+import { validateRequired } from '@/utils/form';
+
 export const dataCBPS = {
   id:null, // si se edita el modelo para agregar un CBP el atributo id debe de ser null, el back sabrá que se trata de un nuevo CBP a crear, si el id no es null el CBP se actualizará
   nombre: null,
@@ -69,3 +71,42 @@ export const days = [
   { id: 6, label: 'Sábado'},
   { id: 7, label: 'Domingo'},
 ]
+
+export const validationsVentana = {
+  id:  (value) => validateRequired(value),
+  dia_inicio: (value) => validateRequired(value),
+  hora_inicio: (value) => validateRequired(value),
+  dia_fin: (value) => validateRequired(value),
+  hora_fin: (value) => validateRequired(value),
+  dias_inhabiles: (value) => ''
+};
+
+export const validateFirstSection = {
+    bu_id: (value) => validateRequired(value),
+    cfs_id: (value) => validateRequired(value),
+    service_owner: (value) => validateRequired(value),
+    criticidad_id: (value) => validateRequired(value),
+    entorno_id: (value) => validateRequired(value),
+    rfo_clp: (value) => '',
+    estatus_id: (value) => validateRequired(value),
+    estatus_medicion_id: (value) => validateRequired(value),
+    tipo_modelo_id: (value) => validateRequired(value),
+    fuente_id: (value) => validateRequired(value),
+    version: (value) => validateRequired(value),
+    meta_disponibilidad: (value) => validateRequired(value),
+    meta_tiempo_respuesta: (value) => validateRequired(value),
+    niveles_servicio: (value) => validateRequired(value),
+    tiempos_respuesta: (value) => validateRequired(value),
+    fecha_alta: (value) => validateRequired(value),
+    fecha_activacion: (value) => validateRequired(value),
+    fecha_inactivacion: (value) => validateRequired(value),
+    fecha_periodo_garantia: (value) => validateRequired(value),
+    fecha_inicio_oficial: (value) => validateRequired(value),
+    fecha_inicio_version: (value) => validateRequired(value),
+    partnership_id: (value) => validateRequired(value),
+    estatus_medicion_partnership_id: (value) => validateRequired(value),
+    meta_partnership_expected: (value) => validateRequired(value),
+    meta_partnership_minimum: (value) => validateRequired(value),
+    fecha_inicio_partnership_initial: (value) => validateRequired(value),
+    fecha_inicio_partnership_as_ls: (value) => validateRequired(value)
+}
