@@ -53,6 +53,11 @@ const routes = [
     component: () => import('@/views/setup/admin-models/NewModel.vue'),
   },
   {
+    path: '/setup/admin-models/elements',
+    name: 'model-new-elements',
+    component: () => import('@/views/setup/admin-models/MeasuringElements.vue'),
+  },
+  {
     path: '/setup/values-d1',
     name: 'values-d1',
     component: () => import('@/views/setup/ValuesD1.vue'),
