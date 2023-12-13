@@ -99,12 +99,69 @@
 
     <v-row>
       <v-col cols="12">
-        <span class="text-h6">Ventana</span>
+        <span class="text-h6">Ventanas General</span>
       </v-col>
     </v-row>
 
-    <v-row v-for="(ventana, index) in data.ventanas_general" :key="`row-ventana-${index}`">
-      <v-col>
+    <v-row v-for="(ventana, index) in data.firstSection.ventanas_general" :key="`row-ventana-${index}`">
+      <v-col  sm="6" md="4" lg="3">
+        <bbva-form-time
+          :class="styles.textInput"
+          :value="ventana.hora_inicio"
+          @input="(ev) => setVentanaValue(index, 'hora_inicio', ev.target.value)"
+          :invalid="!!getVentanaError('hora_inicio', index)"
+          :error-message="getVentanaError('hora_inicio', index)"
+          label="Hora inicio"></bbva-form-time>
+      </v-col>
+      <v-col  sm="6" md="4" lg="3">
+        <bbva-web-form-select
+          key="input-entorno-select"
+          @change="(ev) => setVentanaValue(index, 'dia_inicio', ev.target.value)"
+          :value="ventana.dia_inicio"
+          :invalid="!!getVentanaError('dia_inicio', index)"
+          :error-message="getVentanaError('dia_inicio', index)"
+          label="Día de inicio">
+          <bbva-web-form-option value="">Ninguno</bbva-web-form-option>
+          <bbva-web-form-option
+            v-for="option in catalogs.days"
+            :key="option.id"
+            :value="option.id">{{option.label}}</bbva-web-form-option>
+        </bbva-web-form-select>
+      </v-col>
+
+      <v-col  sm="6" md="4" lg="3">
+        <bbva-form-time
+          :class="styles.textInput"
+          :value="ventana.hora_fin"
+          @input="(ev) => setVentanaValue(index, 'hora_fin', ev.target.value)"
+          :invalid="!!getVentanaError('hora_fin', index)"
+          :error-message="getVentanaError('hora_fin', index)"
+          label="Required" required=""></bbva-form-time>
+      </v-col>
+
+      <v-col  sm="6" md="4" lg="3">
+        <bbva-web-form-select
+          key="input-entorno-select"
+          @change="(ev) => setVentanaValue(index, 'dia_fin', ev.target.value)"
+          :value="ventana.dia_fin"
+          :invalid="!!getVentanaError('dia_fin', index)"
+          :error-message="getVentanaError('dia_fin', index)"
+          label="Día de fin">
+          <bbva-web-form-option value="">Ninguno</bbva-web-form-option>
+          <bbva-web-form-option
+            v-for="option in catalogs.days"
+            :key="option.id"
+            :value="option.id">{{option.label}}</bbva-web-form-option>
+        </bbva-web-form-select>
+      </v-col>
+      <v-col  sm="6" md="4" lg="3">
+        <bbva-web-form-checkbox
+          @change="(ev) => setVentanaValue( index, 'dias_inhabiles', ev.target.checked)"
+          :invalid="!!getVentanaError('dias_inhabiles', index)"
+          :error-message="getVentanaError('dias_inhabiles', index)"
+          name="dias_inhabiles" :checked="ventana.dias_inhabiles">
+          Días inhabiles
+        </bbva-web-form-checkbox>
       </v-col>
     </v-row>
 
@@ -178,6 +235,7 @@
       <v-col  sm="6" md="4" lg="3">
         <bbva-web-form-text
           key="input-version-text"
+          :class="styles.textInput"
           @input="(ev) => data.firstSection.version = ev.target.value"
           :value="data.firstSection.version"
           :invalid="errors.version"
@@ -187,6 +245,7 @@
       <v-col  sm="6" md="4" lg="3">
         <bbva-web-form-number
           key="input-meta-disponibilidad-number"
+          :class="styles.textInput"
           @input="(ev) => data.firstSection.meta_disponibilidad"
           :value="data.firstSection.meta_disponibilidad"
           :invalid="!!errors.meta_disponibilidad"
@@ -195,6 +254,7 @@
       </v-col>
       <v-col  sm="6" md="4" lg="3">
          <bbva-web-form-number
+          :class="styles.textInput"
           key="input-meta-respuesta-number"
           @input="(ev) => data.firstSection.meta_tiempo_respuesta"
           :value="data.firstSection.meta_tiempo_respuesta"
@@ -325,6 +385,7 @@
       <v-col  sm="6" md="4" lg="3">
         <bbva-web-form-text
           key="input-meta_partnership_expected-text"
+          :class="styles.textInput"
           @input="(ev) => data.firstSection.meta_partnership_expected = ev.target.value"
           :value="data.firstSection.meta_partnership_expected"
           :invalid="errors.meta_partnership_expected"
@@ -333,6 +394,7 @@
       </v-col>
       <v-col sm="6" md="4" lg="3">
         <bbva-web-form-text
+          :class="styles.textInput"
           key="input-meta_partnership_minimum-text"
           @input="(ev) => data.firstSection.meta_partnership_minimum = ev.target.value"
           :value="data.firstSection.meta_partnership_minimum"
@@ -389,13 +451,14 @@
 
 <script>
 import {
-  dataFirstSection, dataSecondSection, dataCBPS, dataOperativa, dataVentana
+  dataFirstSection, dataSecondSection, dataCBPS, dataOperativa, dataVentana, days
 } from '@/constants/model';
 import '@/components/bbva-web-components/bbva-web-form-select.js'
 import '@/components/bbva-web-components/bbva-web-form-checkbox.js';
 import '@/components/bbva-web-components/bbva-web-form-text.js'
 import '@/components/bbva-web-components/bbva-web-form-number.js'
 import '@/components/bbva-web-components/bbva-web-form-date.js'
+import '@/components/bbva-web-components/bbva-form-time.js'
 import '@/components/bbva-web-components/bbva-button-default.js'
 import { getBusinessUnitsAPI } from '@/requests/businessUnit';
 import { getCfsesAPI } from '@/requests/cfs';
@@ -409,13 +472,15 @@ import { getStatusModelAPI } from '@/requests/statusModel';
 import { getTypesModelsAPI } from '@/requests/typeModel';
 import { getPartnershipAPI } from "@/requests/partnership";
 import { getPartnershipMeasurementAPI } from "@/requests/partnershipMeasurement";
+import { ref } from 'vue';
 
 export default {
   data() {
     return {
       data: {
-        firstSection: { ...dataFirstSection}
+        firstSection: { ...dataFirstSection },
       },
+      styles: { textInput: ref('text-input') },
       errors: {},
       catalogs: {}
     };
@@ -447,8 +512,17 @@ export default {
           console.log(error);
         });
       });
+     this.catalogs.days = days;
 
-          console.log(this.catalogs);
+    },
+    setVentanaValues(key, index, value) {
+      this.data.firstSection.ventanas_general[index][key] = value;
+    },
+    getVentanaError(key, index) {
+      if( this.errors.ventana && this.errors.ventana[index] ) {
+        return this.errors.ventana[index][key];
+      }
+      return '';
     },
     onSubmit() {},
     cancel () {}
@@ -458,6 +532,11 @@ export default {
 
 <style>
   .date-input input {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+  }
+  .text-input input {
     position: absolute;
     top: 20%;
     left: 5%;

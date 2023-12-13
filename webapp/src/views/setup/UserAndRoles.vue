@@ -47,6 +47,7 @@ import {
 import UserForm from '@/components/forms/UserForm.vue';
 import { updateStatusUsersAPI, getUsersAPI, createUserAPI, updateUserAPI } from '@/requests/users';
 import InformationModal from '@/components/modals/InformationModal.vue';
+import { instanceAxiosAPI } from '@/requests/axiosconfig';
 
 export default {
   data() {
@@ -76,6 +77,14 @@ export default {
     DataTable,
     SectionHeader,
     UserForm,
+  },
+  beforeMount() {
+    console.log('Hola a todos');
+     instanceAxiosAPI.get('/v1/bu/3').then( (response) => {
+       console.log('Exito: ', response);
+     }).catch( (error) => {
+       console.log('Exito: ', error);
+     });
   },
   methods: {
     edit(item) {

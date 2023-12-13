@@ -26,6 +26,7 @@
               <v-col cols="12">
                 <bbva-web-form-text
                   @input="(ev) => setValue('nombre_apellidos', ev)"
+                  :class="styles.textInput"
                   :value="inputs.nombre_apellidos.value"
                   :invalid="Boolean(inputs.nombre_apellidos.error)"
                   :error-message="inputs.nombre_apellidos.error"
@@ -35,6 +36,7 @@
                 <bbva-web-form-text
                   @input="(ev) => setValue('email', ev)"
                   :value="inputs.email.value"
+                  :class="styles.textInput"
                   :invalid="Boolean(inputs.email.error)"
                   :error-message="inputs.email.error"
                   label="Email"></bbva-web-form-text>
@@ -43,6 +45,7 @@
                 <bbva-web-form-text
                   @input="(ev) => setValue('employee_id', ev)"
                   :value="inputs.employee_id.value"
+                  :class="styles.textInput"
                   :invalid="Boolean(inputs.employee_id.error)"
                   :error-message="inputs.employee_id.error"
                   label="ID usuario"></bbva-web-form-text>
@@ -154,8 +157,9 @@ import { getBusinessUnitsAPI } from '@/requests/businessUnit';
 import { getGeographyN1sAPI } from '@/requests/geographyN1';
 import { getRolesAPI } from '@/requests/roles';
 import { validationsForm } from '@/constants/userAndRoles'
+import { ref } from 'vue';
 import {
-  validateRequired, clearInputs, isThereError, validateAllFields, parseCatalog
+  clearInputs, isThereError, validateAllFields, parseCatalog
 } from '@/utils/form';
 const fields = [
   'nombre_apellidos', 'email',  'employee_id',
@@ -170,6 +174,7 @@ export default {
       valid: true,
       catalogs: {},
       validations: { ...validationsForm},
+      styles: { textInput: ref('text-input') },
       addBu: true,
       fieldKeys: [...fields],
     }
@@ -283,3 +288,11 @@ export default {
   }
 }
 </script>
+
+<style>
+  .text-input input {
+    position: absolute;
+    top: 20%;
+    left: 3%;
+  }
+</style>

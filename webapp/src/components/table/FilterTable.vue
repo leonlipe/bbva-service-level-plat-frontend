@@ -26,6 +26,7 @@
           :key="`hidden-filter-index-${index}`"
           v-for="(filter, index) in filters">
           <bbva-web-form-text
+            :class="styles.textInput"
             v-if="filter.type === 'text'"
             @change="(ev) => setValue(filter, ev)"
             :value="inputs[filter.name].value"
@@ -83,6 +84,7 @@
         v-for="(filter, index) in showedFilters">
         <bbva-web-form-text
           v-if="filter.type === 'text'"
+          :class="styles.textInput"
           @input="(ev) => setValue(filter, ev)"
           :value="inputs[filter.name].value"
           :label="filter.label"></bbva-web-form-text>
@@ -142,17 +144,19 @@
 
 <script>
 
-import '@/components/bbva-web-components/bbva-web-form-text.js'
-import '@/components/bbva-web-components/bbva-web-form-select.js'
-import '@/components/bbva-web-components/bbva-button-default.js'
-import DatePicker from '@/components/forms/DatePicker.vue'
+import '@/components/bbva-web-components/bbva-web-form-text.js';
+import '@/components/bbva-web-components/bbva-web-form-select.js';
+import '@/components/bbva-web-components/bbva-button-default.js';
+import DatePicker from '@/components/forms/DatePicker.vue';
+import { ref } from 'vue';
 
 export default {
   data() {
     return {
       showMoreFilters: false,
       showedFilters: [],
-      inputs: {}
+      inputs: {},
+      styles: { textInput: ref('text-input') } 
     }
   },
   beforeMount() {
@@ -200,3 +204,11 @@ export default {
   }
 };
 </script>
+
+<style>
+  .text-input input {
+    position: absolute;
+    top: 20%;
+    left: 3%;
+  }
+</style>

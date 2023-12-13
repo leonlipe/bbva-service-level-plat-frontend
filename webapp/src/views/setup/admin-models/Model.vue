@@ -204,74 +204,46 @@
       </v-col>
     </v-row>
 
-    <v-row class="pb-3">
-      <v-col cols="12" class="d-flex">
-        <bbva-button-default
-          variant="link"
-          style="color: #1973B8; padding-top: 5px;"
-          :icon="showAdminSystems ? 'bbva:collapse' : 'bbva:expand'"
-          text=""
-          @click="() => showAdminSystems = ! showAdminSystems">
-        </bbva-button-default>
-        <span class="text-h6">Administración de sistemas</span>
-      </v-col>
-    </v-row>
-
-    <v-row v-show="showAdminSystems" class="pb-6">
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Operativa:</span>
-      </v-col>
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Elemento variable de cada fuente:</span>
-      </v-col>
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Umbral TR:</span>
-      </v-col>
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Elemento variable madre:</span>
-      </v-col>
-    </v-row>
-
-    <v-divider></v-divider>
-
-    <v-row class="pb-3 pt-3">
-      <v-col cols="12" class="d-flex">
-        <bbva-button-default
-          variant="link"
-          style="color: #1973B8; padding-top: 5px;"
-          :icon="showOperative ? 'bbva:collapse' : 'bbva:expand'"
-          text=""
-          @click="() => showOperative = ! showOperative">
-        </bbva-button-default>
-        <span class="text-h6">Operaciones transaccionales</span>
-      </v-col>
-    </v-row>
-
-    <v-row v-show="showOperative" class="pb-6">
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Operativa:</span>
-      </v-col>
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Elemento variable de cada fuente:</span>
-      </v-col>
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Umbral TR:</span>
-      </v-col>
-      <v-col :class="styles.itemModel">
-        <img src="/icons/flag.svg" alt="Icono de listado"/>
-        <span class="pl-2">Elemento variable madre:</span>
-      </v-col>
-    </v-row>
-
-    <v-divider></v-divider>
-
+    <div v-for="(cbp, index) in data.cbps" :key="`cbp-${index}`">
+      <v-row class="pb-4">
+        <v-col cols="12" class="d-flex">
+          <bbva-button-default
+            variant="link"
+            style="color: #1973B8; padding-top: 5px;"
+            :icon="showCBP[cbp.nombre] ? 'bbva:collapse' : 'bbva:expand'"
+            text=""
+            @click="() => showCBP[cbp.nombre] = ! showCBP[cbp.nombre]">
+          </bbva-button-default>
+          <span class="text-h6">{{cbp.nombre}}</span>
+        </v-col>
+      </v-row>
+      <div
+        v-show="showCBP[cbp.nombre]"
+        v-for="(operativa, indexOperativa) in cbp.operativas"
+        :key="`operativa-${index}-${indexOperativa}`"
+        >
+        <v-row :class="indexOperativa === 0 ? 'pb-4' : 'pb-4 pt-4'">
+          <v-col :class="styles.itemModel">
+            <img src="/icons/flag.svg" alt="Icono de listado"/>
+            <span class="pl-2">Operativa: {{operativa.nombre}}</span>
+          </v-col>
+          <v-col :class="styles.itemModel">
+            <img src="/icons/flag.svg" alt="Icono de listado"/>
+            <span class="pl-2">Elemento variable de cada fuente: {{operativa.elemento_variable}}</span>
+          </v-col>
+          <v-col :class="styles.itemModel">
+            <img src="/icons/flag.svg" alt="Icono de listado"/>
+            <span class="pl-2">Umbral TR: {{operativa.umbral_tr}}</span>
+          </v-col>
+          <v-col :class="styles.itemModel">
+            <img src="/icons/flag.svg" alt="Icono de listado"/>
+            <span class="pl-2">Elemento variable madre: {{operativa.es_madre ? 'Si' : 'No'}}</span>
+          </v-col>
+        </v-row>
+        <v-divider v-if="indexOperativa !== cbp.operativas.length - 1"></v-divider>
+      </div>
+      <v-divider></v-divider>
+    </div>
   </v-container>
 </template>
 
@@ -286,8 +258,8 @@ export default {
     return {
       data: {},
       id: null,
-      showAdminSystems: false,
-      showOperative: false,
+      showCBP: {
+      },
       styles: {
         itemModel: ref('item-model')
       }
@@ -297,6 +269,9 @@ export default {
     this.id = this.$route.params.id;
     getModelAPI(this.id).then( (response) => {
       this.data = response.data;
+      this.data.cbps.forEach( (cbp) => {
+        this.showCBP[cbp.nombre] = false;
+      });
     }).catch( (error) => {
       console.log(error);
     });

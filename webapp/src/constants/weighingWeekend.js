@@ -20,25 +20,25 @@ export const filtersTable = [
 export const validationsForm = {
   bu_id: (value) => validateRequired(value),
   cfs_id: (value) => validateRequired(value),
-  expiration_date: (value) => validateRequired(value),
-  weighing_saturday: (value) => validateRequired(value) || validateNumber(value, 0, 100),
-  weighing_sunday: (value) => validateRequired(value) || validateNumber(value, 0, 100),
+  fecha_vigencia: (value) => validateRequired(value),
+  ponSabado: (value) => validateRequired(value) || validateNumber(value, 0, 100),
+  ponDomingo: (value) => validateRequired(value) || validateNumber(value, 0, 100),
 }
 
 export const fieldsForm = [
   { name: 'bu_id', label: 'Business unit', type: 'select', request: getBusinessUnitsAPI  },
   { name: 'cfs_id', label: 'CFS', type: 'select', request: getCfsesAPI  },
-  { name: 'expiration_date', label: 'Fecha de vigencia', type: 'date' },
+  { name: 'fecha_vigencia', label: 'Fecha de vigencia', type: 'date' },
   {
-    name: 'weighing_saturday', label: 'Porcentaje ponderación sábado', type: 'number',
+    name: 'ponSabado', label: 'Porcentaje ponderación sábado', type: 'number',
     max: 100, min: 0 },
   {
-    name: 'weighing_sunday', label: 'Porcentaje ponderación domingo', type: 'number',
+    name: 'ponDomingo', label: 'Porcentaje ponderación domingo', type: 'number',
     max: 100, min: 0
   },
 ];
 
 
 export const requestDataKeys = [
-  'bu', 'cfs', 'expiration_date', 'date_setup', 'updated_at', 'weighing_saturday', 'weighing_sunday'
+  'bu', 'cfs', 'fecha_vigencia', 'fecha_configuracion', 'usuario', 'ponSabado', 'ponDomingo'
 ];

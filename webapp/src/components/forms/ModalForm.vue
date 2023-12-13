@@ -43,6 +43,7 @@
                   :key="`input-${index}-text`"
                   v-if="field.type === 'text'"
                   @input="(ev) => setValue(field.name, ev)"
+                  :class="styles.textInput"
                   :value="inputs[field.name].value"
                   :invalid="Boolean(inputs[field.name].error)"
                   :error-message="inputs[field.name].error"
@@ -50,6 +51,7 @@
                 <bbva-web-form-number
                   :key="`input-${index}-number`"
                   v-if="field.type === 'number'"
+                  :class="styles.textInput"
                   @input="(ev) => setValue(field.name, ev)"
                   :value="inputs[field.name].value"
                   :invalid="!!inputs[field.name].error"
@@ -103,6 +105,7 @@ import '@/components/bbva-web-components/bbva-foundations-icons.js'
 import DatePicker from '@/components/forms/DatePicker.vue'
 import { clearInputs, isThereError, validateAllFields, parseCatalog } from '@/utils/form';
 import Overlay from "@/components/overlay/Overlay.vue"
+import { ref } from 'vue';
 
 export default {
   data() {
@@ -112,6 +115,7 @@ export default {
       valid: true,
       catalogs: {},
       fieldKeys: [],
+      styles: { textInput: ref('text-input') } 
     }
   },
   beforeMount() {
@@ -211,3 +215,11 @@ export default {
   }
 }
 </script>
+
+<style>
+  .text-input input {
+    position: absolute;
+    top: 20%;
+    left: 3%;
+  }
+</style>
