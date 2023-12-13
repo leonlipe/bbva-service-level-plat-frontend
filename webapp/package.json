@@ -17,6 +17,7 @@
     "@bbva-web-components/bbva-core-icon": "^1.5.7",
     "@bbva-web-components/bbva-form-checkbox": "^7.9.16",
     "@bbva-web-components/bbva-form-input": "^1.1.11",
+    "@bbva-web-components/bbva-form-time": "^3.16.40",
     "@bbva-web-components/bbva-foundations-icons": "^1.25.0",
     "@bbva-web-components/bbva-foundations-microillustrations": "^5.21.0",
     "@bbva-web-components/bbva-foundations-spinner": "^1.0.13",

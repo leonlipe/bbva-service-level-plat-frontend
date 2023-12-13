@@ -1,3 +1,27 @@
+export const dataCBPS = {
+  id:null, // si se edita el modelo para agregar un CBP el atributo id debe de ser null, el back sabrá que se trata de un nuevo CBP a crear, si el id no es null el CBP se actualizará
+  nombre: null,
+  numero: null,
+  operativas: []
+};
+
+export const dataOperativa = {
+  id:null,
+  nombre: null,
+  elemento_variable: null,
+  umbral_tr: null,
+  es_madre: false
+};
+
+export const dataVentana = {
+  id: null,
+  dia_inicio: null,
+  hora_inicio: null,
+  dia_fin: null,
+  hora_fin: null,
+  dias_inhabiles: false
+};
+
 export const dataFirstSection = {
   data: {
     bu_id: null,
@@ -28,7 +52,7 @@ export const dataFirstSection = {
     fecha_inicio_partnership_initial: null,
     fecha_inicio_partnership_as_ls: null
   },
-  ventanas_general:[]
+  ventanas_general:[ {...dataVentana}]
 };
 
 export const dataSecondSection = {
@@ -36,26 +60,12 @@ export const dataSecondSection = {
   cbps:[]
 };
 
-export const dataCBPS = {
-  id:null, // si se edita el modelo para agregar un CBP el atributo id debe de ser null, el back sabrá que se trata de un nuevo CBP a crear, si el id no es null el CBP se actualizará
-  nombre: null,
-  numero: null,
-  operativas: []
-};
-
-export const dataOperativa = {
-  id:null,
-  nombre: null,
-  elemento_variable: null,
-  umbral_tr: null,
-  es_madre: false
-};
-
-export const dataVentana = {
-  id: null,
-  dia_inicio: null,
-  hora_inicio: null,
-  dia_fin: null,
-  hora_fin: null,
-  dias_habiles: false
-};
+export const days = [ 
+  { id: 1, label: 'Lunes'},
+  { id: 2, label: 'Martes'},
+  { id: 3, label: 'Miércoles'},
+  { id: 4, label: 'Jueves'},
+  { id: 5, label: 'Viernes'},
+  { id: 6, label: 'Sábado'},
+  { id: 7, label: 'Domingo'},
+]
