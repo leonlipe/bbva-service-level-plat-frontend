@@ -6,371 +6,159 @@
 				</bbva-progress-multistep-bar>
 			</v-col>
 		</v-row>
-		<v-row>
-			<v-col cols="12">
-				<span class="text-h5">Datos del modelo</span>
-			</v-col>
-		</v-row>
 
 		<v-row>
 			<v-col cols="12">
-				<span class="text-h6">Datos CFS</span>
-			</v-col>
-		</v-row>
-
-		<v-row >
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-bu-select"
-					@change="(ev) => data.firstSection.bu_id = ev.target.value"
-					:value="data.firstSection.bu_id"
-					:invalid="!!errors.bu_id"
-					:error-message="errors.bu_id"
-					label="Business Unit">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.bu_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-cfs-select"
-					@change="(ev) => data.firstSection.cfs_id = ev.target.value"
-					:value="data.firstSection.cfs_id"
-					:invalid="!!errors.cfs_id"
-					:error-message="errors.cfs_id"
-					label="CFS / Servicio">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.cfs_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-user-select"
-					@change="(ev) => data.firstSection.service_owner = ev.target.value"
-					:value="data.firstSection.service_owner"
-					:invalid="!!errors.service_owner"
-					:error-message="errors.service_owner"
-					label="Service Owner / Nombre y apellidos">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.service_owner"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-criticidad-select"
-					@change="(ev) => data.firstSection.criticidad_id = ev.target.value"
-					:value="data.firstSection.criticidad_id"
-					:invalid="!!errors.criticidad_id"
-					:error-message="errors.criticidad_id"
-					label="Clasificación criticidad">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.criticidad_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-entorno-select"
-					@change="(ev) => data.firstSection.entorno_id = ev.target.value"
-					:value="data.firstSection.entorno_id"
-					:invalid="!!errors.entorno_id"
-					:error-message="errors.entorno_id"
-					label="Entorno">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.entorno_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col md="2" lg="1">
-				<bbva-web-form-checkbox
-					@change="(ev) => data.firstSection.rfo_clp = ev.target.checked"
-					name="rfo_clp" :checked="data.firstSection.rfo_clp">
-					RFO/CLP
-				</bbva-web-form-checkbox>
+				<span class="text-h6">1 de 2</span>
 			</v-col>
 		</v-row>
 
 		<v-row>
 			<v-col cols="12">
-				<span class="text-h6">Ventana</span>
-			</v-col>
-		</v-row>
-
-		<v-row v-for="(ventana, index) in data.ventanas_general" :key="`row-ventana-${index}`">
-			<v-col>
+				<span class="text-h5 font-weight-black">Elementos de medición</span>
 			</v-col>
 		</v-row>
 
 		<v-row>
 			<v-col cols="12">
-				<span class="text-h6">Datos de medición</span>
-			</v-col>
-		</v-row>
-
-		<v-row>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-bu-select"
-					@change="(ev) => data.firstSection.estatus_id = ev.target.value"
-					:value="data.firstSection.estatus_id"
-					:invalid="!!errors.estatus_id"
-					:error-message="errors.estatus_id"
-					label="Business Unit">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.estatus_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-status-measurement-select"
-					@change="(ev) => data.firstSection.estatus_medicion_id = ev.target.value"
-					:value="data.firstSection.estatus_medicion_id"
-					:invalid="!!errors.estatus_medicion_id"
-					:error-message="errors.estatus_medicion_id"
-					label="CFS / Servicio">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.estatus_medicion_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-fuente-select"
-					@change="(ev) => data.firstSection.fuente_id = ev.target.value"
-					:value="data.firstSection.fuente_id"
-					:invalid="!!errors.fuente_id"
-					:error-message="errors.fuente_id"
-					label="Service Owner / Nombre y apellidos">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.fuente_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="input-tipo-modelo-select"
-					@change="(ev) => data.firstSection.tipo_modelo_id = ev.target.value"
-					:value="data.firstSection.tipo_modelo_id"
-					:invalid="!!errors.tipo_modelo_id"
-					:error-message="errors.tipo_modelo_id"
-					label="Modelo">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.tipo_modelo_id"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-text
-					key="input-version-text"
-					@input="(ev) => data.firstSection.version = ev.target.value"
-					:value="data.firstSection.version"
-					:invalid="errors.version"
-					:error-message="errors.version"
-					label="Versión"></bbva-web-form-text>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-number
-					key="input-meta-disponibilidad-number"
-					@input="(ev) => data.firstSection.meta_disponibilidad"
-					:value="data.firstSection.meta_disponibilidad"
-					:invalid="!!errors.meta_disponibilidad"
-					:error-message="errors.meta_disponibilidad"
-					label="Meta disponibilidad"></bbva-web-form-number>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-					<bbva-web-form-number
-					key="input-meta-respuesta-number"
-					@input="(ev) => data.firstSection.meta_tiempo_respuesta"
-					:value="data.firstSection.meta_tiempo_respuesta"
-					:invalid="!!errors.meta_tiempo_respuesta"
-					:error-message="errors.meta_tiempo_respuesta"
-					label="Meta tiempo de respuesta %"></bbva-web-form-number>
+				<bbva-web-notification-message style="padding-top: 5px; padding-left: 10px;">
+					<p>Todos los campos son obligatorios para poder avanzar</p>
+				</bbva-web-notification-message>
 			</v-col>
 		</v-row>
 
 		<v-row>
 			<v-col cols="12">
-				<span class="text-h6">Fechas</span>
+				<span class="text-h6 font-weight-black">Resumen Modelo paso 1</span>
 			</v-col>
 		</v-row>
 
 		<v-row>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de alta"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_alta = ev.target.value"
-				/>
+			<v-col cols="2">
+				<span class="text fs-14">Business Unit: Mexico</span>
 			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de activación"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_activacion = ev.target.value"
-				/>
+			<v-col cols="2">
+				<span class="text fs-14">CFS: App Empresas</span>
 			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de inicio Periodo de Garantía"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_periodo_garantia = ev.target.value"
-				/>
+			<v-col cols="3">
+				<span class="text fs-14">Estatus de medición: Periodo de garantía</span>
 			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de inicio Oficial"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_inicio_oficial = ev.target.value"
-				/>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de inactivación"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_inactivacion = ev.target.value"
-				/>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de inicio de versión"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_inicio_version = ev.target.value"
-				/>
+			<v-col cols="2">
+				<span class="text fs-14">Fuente: App Empresas: DCRUM</span>
 			</v-col>
 		</v-row>
 
 		<v-row>
+			<v-col cols="12" style="display: flex;gap: 10px;align-items: center;">
+				<span class="text-h5 font-weight-black">Business Unit y CBPS</span>
+				<bbva-button-default
+					text="Añadir CBP"
+					style="color: #1973B8; display: flex; gap: 8px;"
+					icon="bbva:add"
+					variant="link"
+					@click="addRowCPBS">
+				</bbva-button-default>
+			</v-col>
 			<v-col cols="12">
-				<span class="text-h6">Partnership</span>
+				<span class="text fs-14">Crea CBPS y añade las operativas con sus datos necesarias</span>
 			</v-col>
 		</v-row>
 
-		<v-row>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="partnership_select"
-					@change="(ev) => data.firstSection.partnership_id = ev.target.value"
-					:value="data.firstSection.partnership_select"
-					:invalid="!!errors.partnership_select"
-					:error-message="errors.partnership_select"
-					label="Partnership">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.partnership_select"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-select
-					key="partnership_measurement_select"
-					@change="(ev) => data.firstSection.estatus_medicion_partnership_id = ev.target.value"
-					:value="data.firstSection.partnership_measurement_select"
-					:invalid="!!errors.partnership_measurement_select"
-					:error-message="errors.partnership_measurement_select"
-					label="Estatus Medición Partnership">
-					<bbva-web-form-option value="">Ninguno</bbva-web-form-option>
-					<bbva-web-form-option
-						v-for="option in catalogs.partnership_measurement_select"
-						:key="option.id"
-						:value="option.id">{{option.label}}</bbva-web-form-option>
-				</bbva-web-form-select>
-			</v-col>
-			<v-col  sm="6" md="4" lg="3">
-				<bbva-web-form-text
-					key="input-meta_partnership_expected-text"
-					@input="(ev) => data.firstSection.meta_partnership_expected = ev.target.value"
-					:value="data.firstSection.meta_partnership_expected"
-					:invalid="errors.meta_partnership_expected"
-					:error-message="errors.meta_partnership_expected"
-					label="Meta Partnership Expected SLA"></bbva-web-form-text>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-text
-					key="input-meta_partnership_minimum-text"
-					@input="(ev) => data.firstSection.meta_partnership_minimum = ev.target.value"
-					:value="data.firstSection.meta_partnership_minimum"
-					:invalid="errors.meta_partnership_minimum"
-					:error-message="errors.meta_partnership_minimum"
-					label="Meta Partnership Minimum SLA"></bbva-web-form-text>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de inicio partnership Initial"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_inicio_partnership_initial = ev.target.value"
-				/>
-			</v-col>
-			<v-col sm="6" md="4" lg="3">
-				<bbva-web-form-date custom
-					label="Fecha de inicio partnership As Is"
-					:value="valueAsStr"
-					:min="min"
-					class="date-input"
-					:invalid="invalid"
-					:error-message="errorMessage"
-					:max="max"
-					@value-change="(ev) => data.firstSection.fecha_inicio_partnership_as_ls = ev.target.value"
-				/>
-			</v-col>
-		</v-row>
+		<v-container v-for="(CPBS, index) in CPBS" class="mx-5" style="max-width: 100%;">
+			<v-row>
+				<v-col cols="3">
+					<span class="text-h6 font-weight-black">- CBP {{ index + 1 }}</span>
+				</v-col>
+			</v-row>
+			<v-row>
+				<v-col  sm="6" md="4" lg="3">
+					<bbva-web-form-text
+						key="input-version-text"
+						class="input-text"
+						@input="(ev) => data.firstSection.version = ev.target.value"
+						:value="data.firstSection.version"
+						:invalid="errors.version"
+						:error-message="errors.version"
+						label="Nombre de CBP"></bbva-web-form-text>
+				</v-col>
+				<v-col  sm="6" md="4" lg="3" align-self="center">
+					<bbva-button-default
+						text="Eliminar CBP"
+						style="color: #1973B8; display: flex; gap: 8px;"
+						icon="bbva:trash"
+						variant="link"
+						:disabled="index === 0"
+						@click="deleteRowCPBS">
+					</bbva-button-default>
+				</v-col>
+			</v-row>
+			<v-row v-for="(input, index) in inputs">
+				<v-col cols="12">
+					<span class="text fs-14">Operativa {{ index + 1 }}</span>
+				</v-col>
+				<v-col  sm="6" md="4" lg="3">
+					<bbva-web-form-text
+						key="input-version-text"
+						class="input-text"
+						@input="(ev) => data.firstSection.version = ev.target.value"
+						:value="data.firstSection.version"
+						:invalid="errors.version"
+						:error-message="errors.version"
+						label="Nombre operativa"></bbva-web-form-text>
+				</v-col>
+				<v-col  sm="6" md="4" lg="3">
+					<bbva-web-form-text
+						key="input-version-text"
+						class="input-text"
+						@input="(ev) => data.firstSection.version = ev.target.value"
+						:value="data.firstSection.version"
+						:invalid="errors.version"
+						:error-message="errors.version"
+						label="Elemento variante de cada fuente"></bbva-web-form-text>
+				</v-col>
+				<v-col  sm="6" md="4" lg="3">
+					<bbva-web-form-text
+						key="input-version-text"
+						class="input-text"
+						@input="(ev) => data.firstSection.version = ev.target.value"
+						:value="data.firstSection.version"
+						:invalid="errors.version"
+						:error-message="errors.version"
+						label="Umbral TR"></bbva-web-form-text>
+				</v-col>
+				<v-col  sm="6" md="4" lg="2" class="py-0" style="text-align: center;">
+					<span class="">Elemento variable madre</span>
+					<div role="radiogroup" class="radio-custom-grid">
+						<bbva-web-form-radio-button name="options" value="1">Si</bbva-web-form-radio-button>
+						<bbva-web-form-radio-button name="options" value="2">No</bbva-web-form-radio-button>
+					</div>
+				</v-col>
+				<v-col  sm="1" md="1" lg="1">
+					<bbva-button-default
+						text=""
+						style="color: #1973B8"
+						icon="bbva:trash"
+						variant="link"
+						:disabled="index === 0"
+						@click="deleteRow">
+					</bbva-button-default>
+				</v-col>
+
+			</v-row>
+			<v-row>
+				<v-col sm="6" md="4" lg="1" align-self="center">
+					<bbva-button-default
+						text="Añadir operativa"
+						style="color: #1973B8; display: flex; gap: 8px;"
+						icon="bbva:add"
+						variant="link"
+						@click="addRow">
+					</bbva-button-default>
+				</v-col>
+			</v-row>
+		</v-container>
+
+		<v-divider class="my-5"></v-divider>
 
 		<v-row align-content="center">
 			<v-col sm="6" md="4" lg="2">
@@ -383,7 +171,8 @@
 			<v-col sm="6" md="4" lg="1" align-self="center">
 				<bbva-button-default
 					text="Cancelar"
-					class="btn-cancel"
+					style="color: #1973B8"
+					class="btn-cancel font-weight-black"
 					variant="link"
 					@click="cancel">
 				</bbva-button-default>
@@ -402,8 +191,10 @@ import '@/components/bbva-web-components/bbva-web-form-checkbox.js';
 import '@/components/bbva-web-components/bbva-web-form-text.js'
 import '@/components/bbva-web-components/bbva-web-form-number.js'
 import '@/components/bbva-web-components/bbva-web-form-date.js'
+import '@/components/bbva-web-components/bbva-web-form-radio-button.js'
 import '@/components/bbva-web-components/bbva-button-default.js'
 import '@/components/bbva-web-components/bbva-progress-multistep-bar.js'
+import '@/components/bbva-web-components/bbva-web-notification-message.js'
 import { getBusinessUnitsAPI } from '@/requests/businessUnit';
 import { getCfsesAPI } from '@/requests/cfs';
 import { getListUserNamesAPI } from '@/requests/users';
@@ -424,7 +215,9 @@ export default {
 				firstSection: { ...dataFirstSection}
 			},
 			errors: {},
-			catalogs: {}
+			catalogs: {},
+			CPBS: [1],
+			inputs: [1],
 		};
 	},
 	beforeMount() {
@@ -457,6 +250,24 @@ export default {
 
 					console.log(this.catalogs);
 		},
+		addRowCPBS() {
+			this.CPBS.push({
+        one: '',
+        two: ''
+      })
+		},
+		addRow() {
+      this.inputs.push({
+        one: '',
+        two: ''
+      })
+    },
+		deleteRowCPBS(index) {
+			this.CPBS.splice(index,1)
+		},
+		deleteRow(index) {
+      this.inputs.splice(index,1)
+    },
 		onSubmit() {},
 		cancel () {}
 	}
@@ -464,13 +275,19 @@ export default {
 </script>
 
 <style>
-	.date-input input {
-		position: absolute;
-		top: 20%;
-		left: 5%;
+	.fs-14 {
+		font-size: 14px;
 	}
 	.btn-cancel {
 		margin: 10px 0;
+	}
+	.input-text input {
+		margin-left: 17px;
+    margin-top: 12px;
+	}
+	.radio-custom-grid {
+		display: flex;
+    justify-content: space-around;
 	}
 </style>
 	
