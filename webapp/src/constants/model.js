@@ -117,3 +117,15 @@ export const validateFirstSection = {
     fecha_inicio_partnership_initial: (value) => validateRequired(value),
     fecha_inicio_partnership_as_ls: (value) => validateRequired(value)
 }
+
+
+export const validateSecondSection = {
+  cbps: [
+    {
+      name_cbp: (value) => validateRequired(value),
+      name_operational: (value) => validateRequired(value),
+      element: (value) => validateRequired(value),
+      umbral_tr: (value) => validateRequired(value)
+    }
+  ]
+}

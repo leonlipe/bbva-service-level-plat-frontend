@@ -69,7 +69,7 @@
 					<bbva-web-form-text
 						key="input-name-cbp-text"
 						class="input-text"
-						@input="(ev) => data.cbps[index].name_cbp = ev.target.value"
+						@input="(ev) => setValue(index, 'name_cbp', ev.target.value)"
 						:value="data.cbps[index].name_cbp"
 						:invalid="errors.name_cbp"
 						:error-message="errors.name_cbp"
@@ -94,7 +94,7 @@
 					<bbva-web-form-text
 						key="input-operational-text"
 						class="input-text"
-						@input="(ev) => data.cbps[index].name_operational = ev.target.value"
+						@input="(ev) => setValue(index, 'name_operational', ev.target.value)"
 						:value="data.cbps[index].name_operational"
 						:invalid="errors.name_operational"
 						:error-message="errors.name_operational"
@@ -104,7 +104,7 @@
 					<bbva-web-form-text
 						key="input-element-text"
 						class="input-text"
-						@input="(ev) => data.cbps[index].element = ev.target.value"
+						@input="(ev) => setValue(index, 'element', ev.target.value)"
 						:value="data.cbps[index].element"
 						:invalid="errors.element"
 						:error-message="errors.element"
@@ -114,7 +114,7 @@
 					<bbva-web-form-text
 						key="input-umbral-text"
 						class="input-text"
-						@input="(ev) => data.cbps[index].umbral_tr = ev.target.value"
+						@input="(ev) => setValue(index, 'umbral_tr', ev.target.value)"
 						:value="data.cbps[index].umbral_tr"
 						:invalid="errors.umbral_tr"
 						:error-message="errors.umbral_tr"
@@ -177,7 +177,7 @@
 </template>
 
 <script>
-import { dataSecondSection } from '@/constants/model';
+import { dataSecondSection, validateSecondSection } from '@/constants/model';
 import '@/components/bbva-web-components/bbva-web-form-select.js'
 import '@/components/bbva-web-components/bbva-web-form-checkbox.js';
 import '@/components/bbva-web-components/bbva-web-form-text.js'
@@ -196,6 +196,9 @@ export default {
         ...dataSecondSection,
       },
 			errors: {},
+			validations: {
+       ...validateSecondSection
+			},
 			CPBS: [1],
 			inputs: [1],
 		};
@@ -208,6 +211,10 @@ export default {
     HeaderFormModel
   },
 	methods: {
+		setValue(index, key, value) {
+      this.data.cbps[index][key] = value;
+      this.errors[key] = this.validations.cbps[index][key](value);
+    },
 		addRowCPBS() {
 			this.CPBS.push({
         one: '',
