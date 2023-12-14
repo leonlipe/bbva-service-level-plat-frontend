@@ -59,7 +59,14 @@ export const dataFirstSection = {
 
 export const dataSecondSection = {
   modelo_id: null, // << ID del modelo al que pertenecen las operativas a actualizar
-  cbps:[]
+  cbps: [
+    {
+      name_cbp: null,
+      name_operational: null,
+      element: null,
+      umbral_tr: null
+    }
+  ]
 };
 
 export const days = [ 

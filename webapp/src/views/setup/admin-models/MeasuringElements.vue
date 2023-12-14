@@ -67,12 +67,12 @@
 			<v-row>
 				<v-col  sm="6" md="4" lg="3">
 					<bbva-web-form-text
-						key="input-version-text"
+						key="input-name-cbp-text"
 						class="input-text"
-						@input="(ev) => data.firstSection.version = ev.target.value"
-						:value="data.firstSection.version"
-						:invalid="errors.version"
-						:error-message="errors.version"
+						@input="(ev) => data.cbps[index].name_cbp = ev.target.value"
+						:value="data.cbps[index].name_cbp"
+						:invalid="errors.name_cbp"
+						:error-message="errors.name_cbp"
 						label="Nombre de CBP"></bbva-web-form-text>
 				</v-col>
 				<v-col  sm="6" md="4" lg="3" align-self="center">
@@ -92,32 +92,32 @@
 				</v-col>
 				<v-col  sm="6" md="4" lg="3">
 					<bbva-web-form-text
-						key="input-version-text"
+						key="input-operational-text"
 						class="input-text"
-						@input="(ev) => data.firstSection.version = ev.target.value"
-						:value="data.firstSection.version"
-						:invalid="errors.version"
-						:error-message="errors.version"
+						@input="(ev) => data.cbps[index].name_operational = ev.target.value"
+						:value="data.cbps[index].name_operational"
+						:invalid="errors.name_operational"
+						:error-message="errors.name_operational"
 						label="Nombre operativa"></bbva-web-form-text>
 				</v-col>
 				<v-col  sm="6" md="4" lg="3">
 					<bbva-web-form-text
-						key="input-version-text"
+						key="input-element-text"
 						class="input-text"
-						@input="(ev) => data.firstSection.version = ev.target.value"
-						:value="data.firstSection.version"
-						:invalid="errors.version"
-						:error-message="errors.version"
+						@input="(ev) => data.cbps[index].element = ev.target.value"
+						:value="data.cbps[index].element"
+						:invalid="errors.element"
+						:error-message="errors.element"
 						label="Elemento variante de cada fuente"></bbva-web-form-text>
 				</v-col>
 				<v-col  sm="6" md="4" lg="3">
 					<bbva-web-form-text
-						key="input-version-text"
+						key="input-umbral-text"
 						class="input-text"
-						@input="(ev) => data.firstSection.version = ev.target.value"
-						:value="data.firstSection.version"
-						:invalid="errors.version"
-						:error-message="errors.version"
+						@input="(ev) => data.cbps[index].umbral_tr = ev.target.value"
+						:value="data.cbps[index].umbral_tr"
+						:invalid="errors.umbral_tr"
+						:error-message="errors.umbral_tr"
 						label="Umbral TR"></bbva-web-form-text>
 				</v-col>
 				<v-col  sm="6" md="4" lg="2" class="py-0" style="text-align: center;">
@@ -177,9 +177,7 @@
 </template>
 
 <script>
-import {
-	dataFirstSection, dataSecondSection, dataCBPS, dataOperativa, dataVentana
-} from '@/constants/model';
+import { dataSecondSection } from '@/constants/model';
 import '@/components/bbva-web-components/bbva-web-form-select.js'
 import '@/components/bbva-web-components/bbva-web-form-checkbox.js';
 import '@/components/bbva-web-components/bbva-web-form-text.js'
@@ -189,35 +187,20 @@ import '@/components/bbva-web-components/bbva-web-form-radio-button.js'
 import '@/components/bbva-web-components/bbva-button-default.js'
 import '@/components/bbva-web-components/bbva-progress-multistep-bar.js'
 import '@/components/bbva-web-components/bbva-web-notification-message.js'
-import { getBusinessUnitsAPI } from '@/requests/businessUnit';
-import { getCfsesAPI } from '@/requests/cfs';
-import { getListUserNamesAPI } from '@/requests/users';
-import { getCriticalitiesAPI } from '@/requests/criticality';
-import { parseCatalog } from '@/utils/form';
-import { getEnvironmentsAPI } from '@/requests/environments';
-import { getMeasurementStatusesAPI } from '@/requests/measurementStatus';
-import { getSourceModelsAPI } from '@/requests/sourceModel';
-import { getStatusModelAPI } from '@/requests/statusModel';
-import { getTypesModelsAPI } from '@/requests/typeModel';
-import { getPartnershipAPI } from "@/requests/partnership";
-import { getPartnershipMeasurementAPI } from "@/requests/partnershipMeasurement";
 import HeaderFormModel from '@/components/headers/HeaderFormModel.vue'
 
 export default {
 	data() {
 		return {
-			data: {
-				firstSection: { ...dataFirstSection}
-			},
+      data: {
+        ...dataSecondSection,
+      },
 			errors: {},
-			catalogs: {},
 			CPBS: [1],
 			inputs: [1],
 		};
 	},
-	beforeMount() {
-		this.loadCatalogs();
-	},
+	beforeMount() {},
 	computed: {
 		valueAsStr () { return this.value }
 	},
@@ -225,29 +208,6 @@ export default {
     HeaderFormModel
   },
 	methods: {
-		loadCatalogs() {
-			[
-				{request: getBusinessUnitsAPI, key: 'bu_id'},
-				{request: getCfsesAPI, key: 'cfs_id' },
-				{request: getListUserNamesAPI, key: 'service_owner'},
-				{request: getCriticalitiesAPI, key: 'criticidad_id'},
-				{request: getEnvironmentsAPI, key: 'entorno_id'},
-				{request: getMeasurementStatusesAPI, key: 'estatus_medicion_id' },
-				{request: getSourceModelsAPI, key: 'fuente_id'},
-				{request: getStatusModelAPI, key: 'estatus_id'},
-				{request: getTypesModelsAPI, key: 'tipo_modelo_id'},
-				{request: getPartnershipAPI, key: 'partnership_select'},
-				{request: getPartnershipMeasurementAPI, key: 'partnership_measurement_select'}
-			].forEach( ({ request, key }) => {
-				request().then((response) => {
-					this.catalogs[key] = parseCatalog(response.data) ;
-				}).catch((error) => {
-					console.log(error);
-				});
-			});
-
-					console.log(this.catalogs);
-		},
 		addRowCPBS() {
 			this.CPBS.push({
         one: '',
