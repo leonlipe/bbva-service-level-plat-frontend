@@ -58,13 +58,18 @@ export const dataFirstSection = {
 };
 
 export const dataSecondSection = {
-  modelo_id: null, // << ID del modelo al que pertenecen las operativas a actualizar
   cbps: [
     {
+      model_id : null,
       name_cbp: null,
-      name_operational: null,
-      element: null,
-      umbral_tr: null
+      operational: [
+        {
+          name_operational: null,
+          element: null,
+          umbral_tr: null,
+          variable_mother: null
+        }
+      ]
     }
   ]
 };
@@ -123,9 +128,14 @@ export const validateSecondSection = {
   cbps: [
     {
       name_cbp: (value) => validateRequired(value),
-      name_operational: (value) => validateRequired(value),
-      element: (value) => validateRequired(value),
-      umbral_tr: (value) => validateRequired(value)
+      operational: [
+        {
+          name_operational: (value) => validateRequired(value),
+          element: (value) => validateRequired(value),
+          umbral_tr: (value) => validateRequired(value),
+          variable_mother: (value) => validateRequired(value)
+        }
+      ]
     }
   ]
 }

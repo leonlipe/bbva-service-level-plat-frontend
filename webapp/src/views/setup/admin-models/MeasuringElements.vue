@@ -58,10 +58,10 @@
 			</v-col>
 		</v-row>
 
-		<v-container v-for="(CPBS, index) in CPBS" class="mx-5" style="max-width: 100%;">
+		<v-container v-for="(CPBS, indexCbps) in CPBS" class="mx-5" style="max-width: 100%;">
 			<v-row>
 				<v-col cols="3">
-					<span class="text-h6 font-weight-black">- CBP {{ index + 1 }}</span>
+					<span class="text-h6 font-weight-black">- CBP {{ indexCbps + 1 }}</span>
 				</v-col>
 			</v-row>
 			<v-row>
@@ -69,8 +69,8 @@
 					<bbva-web-form-text
 						key="input-name-cbp-text"
 						class="input-text"
-						@input="(ev) => setValue(index, 'name_cbp', ev.target.value)"
-						:value="data.cbps[index].name_cbp"
+						@input="(ev) => setValueCBPS(indexCbps, 'name_cbp', ev.target.value)"
+						:value="data.cbps[indexCbps].name_cbp"
 						:invalid="errors.name_cbp"
 						:error-message="errors.name_cbp"
 						label="Nombre de CBP"></bbva-web-form-text>
@@ -81,21 +81,21 @@
 						style="color: #1973B8; display: flex; gap: 8px;"
 						icon="bbva:trash"
 						variant="link"
-						:disabled="index === 0"
+						:disabled="indexCbps === 0"
 						@click="deleteRowCPBS">
 					</bbva-button-default>
 				</v-col>
 			</v-row>
-			<v-row v-for="(input, index) in inputs">
+			<v-row v-for="(input, indexOperational) in inputs">
 				<v-col cols="12">
-					<span class="text fs-14">Operativa {{ index + 1 }}</span>
+					<span class="text fs-14">Operativa {{ indexOperational + 1 }}</span>
 				</v-col>
 				<v-col  sm="6" md="4" lg="3">
 					<bbva-web-form-text
 						key="input-operational-text"
 						class="input-text"
-						@input="(ev) => setValue(index, 'name_operational', ev.target.value)"
-						:value="data.cbps[index].name_operational"
+						@input="(ev) => setValueOperational(indexCbps, indexOperational, 'name_operational', ev.target.value)"
+						:value="data.cbps[indexCbps].operational[indexOperational].name_operational"
 						:invalid="errors.name_operational"
 						:error-message="errors.name_operational"
 						label="Nombre operativa"></bbva-web-form-text>
@@ -104,8 +104,8 @@
 					<bbva-web-form-text
 						key="input-element-text"
 						class="input-text"
-						@input="(ev) => setValue(index, 'element', ev.target.value)"
-						:value="data.cbps[index].element"
+						@input="(ev) => setValueOperational(indexCbps, indexOperational, 'element', ev.target.value)"
+						:value="data.cbps[indexCbps].operational[indexOperational].element"
 						:invalid="errors.element"
 						:error-message="errors.element"
 						label="Elemento variante de cada fuente"></bbva-web-form-text>
@@ -114,8 +114,8 @@
 					<bbva-web-form-text
 						key="input-umbral-text"
 						class="input-text"
-						@input="(ev) => setValue(index, 'umbral_tr', ev.target.value)"
-						:value="data.cbps[index].umbral_tr"
+						@input="(ev) => setValueOperational(indexCbps, indexOperational, 'umbral_tr', ev.target.value)"
+						:value="data.cbps[indexCbps].operational[indexOperational].umbral_tr"
 						:invalid="errors.umbral_tr"
 						:error-message="errors.umbral_tr"
 						label="Umbral TR"></bbva-web-form-text>
@@ -146,7 +146,7 @@
 						style="color: #1973B8; display: flex; gap: 8px;"
 						icon="bbva:add"
 						variant="link"
-						@click="addRow">
+						@click="addRowOperational">
 					</bbva-button-default>
 				</v-col>
 			</v-row>
@@ -211,20 +211,27 @@ export default {
     HeaderFormModel
   },
 	methods: {
-		setValue(index, key, value) {
+		setValueCBPS(index, key, value) {
       this.data.cbps[index][key] = value;
       this.errors[key] = this.validations.cbps[index][key](value);
     },
+		setValueOperational(iCbps, iOperatinal, key, value) {
+			this.data.cbps[iCbps].operational[iOperatinal][key] = value;
+      this.errors[key] = this.validations.cbps[iCbps].operational[iOperatinal][key](value);
+    },
 		addRowCPBS() {
 			this.CPBS.push({
-        one: '',
-        two: ''
+        model_id : null,
+      	name_cbp: null,
+				operational: []
       })
 		},
-		addRow() {
+		addRowOperational() {
       this.inputs.push({
-        one: '',
-        two: ''
+        name_operational: null,
+        element: null,
+        umbral_tr: null,
+        variable_mother: null
       })
     },
 		deleteRowCPBS(index) {
